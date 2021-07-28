@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import "./_bootstrap.scss";
+@import '../node_modules/angular2-toaster/src/toaster.scss';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+.toast-error,
+.toast-success {
+    font-size: 12px !important;
+}
+.mat-card:not([class*='mat-elevation-z']) {
+    box-shadow: 5px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 5px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 1px rgba(0, 0, 0, 0.12);
+}
+
+.add-member-label::after {
+    content: '*';
+    color: red;
+}
+
+.tbl-head {
+    background-color: #286ba5;
+    color: #fff;
+}
+
+.form-control {
+    font-size: 14px !important;
+    height: calc(2.25rem + 10px) !important;
+}
+
+body {
+    font-size: 14px !important;
+}
+
+.status.Red {
+    color: #ec3f41 !important;
+}
+
+.red {
+    color: red !important;
+}
+
+.Red {
+    color: red;
+}

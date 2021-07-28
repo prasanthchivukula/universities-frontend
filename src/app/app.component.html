@@ -1,0 +1,118 @@
+<!-- The content below is only a placeholder and can be replaced.
+  <div style="text-align:center">
+    <h1>
+      Welcome to {{ title }}!
+    </h1>
+    <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+  </div>
+  <h2>Here are some links to help you start: </h2>
+  <ul>
+    <li>
+      <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
+    </li>
+    <li>
+      <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
+    </li>
+    <li>
+      <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
+    </li>
+  </ul>
+  
+  <router-outlet></router-outlet> -->
+  
+  <toaster-container [toasterconfig]="config"></toaster-container>
+  <h3 class="text-center topmargins">Search Courses</h3>
+  <hr>
+  <div fxFlex="100" fxFlex.gt-sm fxFlex.sm class="flex-p w-100 margins">
+    <mat-card class="filter">
+      <mat-card-content>
+        <div class="row">
+          <div class="col-sm-3">
+            <label class="col-sm-4 gpaMargin add-member-label">
+              GPA: 
+            </label>
+            <div class="col-sm-8">
+              <input type="text" maxlength="3" (keypress)="allowOnlyNumbersAndPoint($event)" placeholder="Enter GPA" class="form-control" [formControl]="gpaControl">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <label class="col-sm-5 gpaMargin add-member-label">
+              GRE Score: 
+            </label>
+            <div class="col-sm-7">
+              <input type="text" maxlength="3" placeholder="Enter GRE Score" class="form-control" [formControl]="greControl">
+            </div>
+          </div>
+          <!-- <div class="col-sm-3">
+            <label class="col-sm-4 gpaMargin add-member-label">
+              Country: 
+            </label>
+            <div class="col-sm-8">
+              <input type="text" placeholder="Enter Country" class="form-control" [formControl]="countryControl">
+            </div>
+          </div> -->
+          <div class="col-sm-3">
+            <label class="col-sm-4 gpaMargin add-member-label">
+              Country: 
+            </label>
+            <div class="col-sm-8">
+              <mat-select placeholder="--Search by Country--" class="form-control" [(ngModel)]="country_filter" multiple>
+                <mat-option *ngFor="let option of countries" [value]="option">{{option}}</mat-option>
+              </mat-select>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <label class="col-sm-4 gpaMargin">
+              Course: 
+            </label>
+            <div class="col-sm-8">
+              <input type="text" placeholder="Enter Course" class="form-control" [formControl]="courseControl">
+            </div>
+          </div>
+        </div>
+        <div class="row" style="padding-top:10px !important;text-align: center;">
+          <div class="col-lg-9"></div>
+            <div class="col-lg-1">
+              <button mat-raised-button (click)="filterSearch()" class="btn-primary"><mat-icon>youtube_searched_for</mat-icon> Search</button>
+            </div>
+            <div class="col-lg-1 col-md-3 col-sm-3 col-xs-3">
+              <button mat-raised-button style="background-color:#37474f; color:#fff !important" (click)="clearFilters()"><mat-icon>settings_backup_restore</mat-icon> Clear</button>
+            </div>
+            <div class="col-lg-1"></div>
+          </div>
+          
+          
+        </mat-card-content>
+      </mat-card>
+      
+    </div>
+    
+    <div style="margin-top: 10px;">
+      <div class="table-responsive padding">
+        <table class="table table-bordered table-responsive-md btn-table table-hover">
+          <thead class="tbl-head">
+            <tr>
+              <th>University Name</th>
+              <th>Description</th>
+              <th>Country</th>
+              <th>Course Name</th>
+              <th>Teacher</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="noSelection"><td colspan="5">Please select the above fields to display result</td></tr>
+            <tr *ngIf="showEmpty"><td colspan="5">No universities found matching the above criteria</td></tr>
+            <tr *ngFor="let item of universities">
+              <td>{{item.university}}</td>
+              <td>{{item.description}}</td>
+              <td>{{item.country}}</td>
+              <td>{{item.course}}</td>
+              <td>{{item.teacher}}</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        
+      </div>
+    </div>
